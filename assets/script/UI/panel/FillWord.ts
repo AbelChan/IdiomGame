@@ -8,36 +8,36 @@
  */
 
 import { _decorator, Component, Label } from 'cc';
-const {ccclass, property} = _decorator;
+const { ccclass, property } = _decorator;
 
 import { WordData } from "../controller/playGame/WordData";
 
 @ccclass('FillWord')
-export class FillWord extends Component{
+export class FillWord extends Component {
     @property(Label)
     private label: Label | null = null;
     private _wordData: WordData = null;
     private _onBtnCallback: Function = null;
-    onLoad(){
+    onLoad() {
 
     }
-    start(){
+    start() {
 
     }
-    resume (word: WordData) {        
+    reuse(word: WordData) {
         this._wordData = word;
         this.string = word.word;
     }
-    unuse () {
+    unuse() {
 
     }
-    set string(val: string){
+    set string(val: string) {
         this.label.string = val;
     }
-    public setBtnClickCallback(cb: Function){
+    public setBtnClickCallback(cb: Function) {
         this._onBtnCallback = cb;
     }
-    private onBtnClick(){
+    private onBtnClick() {
         this._onBtnCallback && this._onBtnCallback(this._wordData);
     }
 }

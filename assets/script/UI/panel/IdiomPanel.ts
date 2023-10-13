@@ -17,8 +17,25 @@ import { GameWord } from "./GameWord";
 
 @ccclass('IdiomPanel')
 export default class IdiomPanel extends Component {
-    @property(Node)
-    private targetNode: Node | null = null;
+    @property([Node])
+    line0Nodes: Node[] = [];
+    @property([Node])
+    line1Nodes: Node[] = [];
+    @property([Node])
+    line2Nodes: Node[] = [];
+    @property([Node])
+    line3Nodes: Node[] = [];
+    @property([Node])
+    line4Nodes: Node[] = [];
+    @property([Node])
+    line5Nodes: Node[] = [];
+    @property([Node])
+    line6Nodes: Node[] = [];
+    @property([Node])
+    line7Nodes: Node[] = [];
+    @property([Node])
+    line8Nodes: Node[] = [];
+
     private TAG = "IdiomPanel"
     private static _cellNum: number = 9;
     private _cellWidth: number = 0;
@@ -35,7 +52,6 @@ export default class IdiomPanel extends Component {
     }
     // update (dt) {}
     setWords(words: WordData[]) {
-        this.targetNode.destroyAllChildren();
 
         for (let i = 0, len = words.length; i < len; i++) {
             let word = words[i];

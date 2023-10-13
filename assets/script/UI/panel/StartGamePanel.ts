@@ -8,21 +8,21 @@
  */
 
 import { _decorator } from 'cc';
-const {ccclass, property} = _decorator;
+const { ccclass, property } = _decorator;
 
 import { EventName } from "../../Infrastructure/EventDispater/EventName";
 import PlayGameMediator from "../mediator/PlayGameMediator";
 import BasePanel from "../MVC/core/BasePanel";
 
 @ccclass('StartGamePanel')
-export default class StartGamePanel extends BasePanel{
-    
-   // onLoad () {}
-    start () {
+export default class StartGamePanel extends BasePanel {
+
+    // onLoad () {}
+    start() {
 
     }
-   // update (dt) {}
-    gotoPlayGamePanel (){
-        this._mediator.dispatchEvent(EventName.SHOW_PANEL, {view: PlayGameMediator});
+    // update (dt) {}
+    gotoPlayGamePanel() {
+        this._mediator.dispatchEvent(EventName.SHOW_PANEL, { view: PlayGameMediator });
     }
 }

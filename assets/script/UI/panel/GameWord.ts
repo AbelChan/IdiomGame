@@ -38,7 +38,7 @@ export class GameWord extends Component {
     start() {
 
     }
-    resume(val: WordData) {
+    reuse(val: WordData) {
         this._wordData = val;
         this.setLabelStr(val.word);
         this.setWordImg();

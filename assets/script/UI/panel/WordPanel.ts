@@ -7,7 +7,7 @@
  * @description: 
  */
 
-import { _decorator, Component, UITransform, v3 } from 'cc';
+import { _decorator, Component, Node, UITransform, v3 } from 'cc';
 const { ccclass, property } = _decorator;
 
 import { WordData } from "../controller/playGame/WordData";
@@ -17,6 +17,8 @@ import { FillWord } from "./FillWord";
 
 @ccclass('WordPanel')
 export default class WordPanel extends Component {
+    @property([Node])
+    wordParentNodes: Node[] = [];
     private TAG = "WordPanel";
     private readonly _cellNum: number = 6;
     private _cellWidth: number = 0;
