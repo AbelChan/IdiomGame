@@ -18,7 +18,7 @@ import { GameWord } from "./GameWord";
 @ccclass('IdiomPanel')
 export default class IdiomPanel extends Component {
     @property([Node])
-    line0Nodes: Node[] = [];
+    line0Nodes: Node[][] = [];
     @property([Node])
     line1Nodes: Node[] = [];
     @property([Node])
@@ -55,15 +55,33 @@ export default class IdiomPanel extends Component {
 
         for (let i = 0, len = words.length; i < len; i++) {
             let word = words[i];
-            let node = GameNodePool.getBattleWordNode(word);
-            node.parent = this.node;
             let index = word.index;
             let x = Math.ceil(index / 10);
             let y = index % 10;
-            let ix = Math.ceil(i / IdiomPanel._cellNum);
-            let iy = i % IdiomPanel._cellNum;
-            node.setPosition(v3((2 * x - 1) / 2 * this._cellWidth - this._cellWidth * 4.5,
-                (2 * y - 1) / 2 * this._cellHeight - this._cellHeight * 4.5));
+            let node = GameNodePool.getBattleWordNode(word);
+            let parentNode;
+            if (y === 0) {
+                parentNode = this.line0Nodes[x];
+            } else if (y === 1) {
+                parentNode = this.line1Nodes[x];
+            } else if (y === 2) {
+                parentNode = this.line2Nodes[x];
+            } else if (y === 3) {
+                parentNode = this.line3Nodes[x];
+            } else if (y === 4) {
+                parentNode = this.line4Nodes[x];
+            } else if (y === 5) {
+                parentNode = this.line5Nodes[x];
+            } else if (y === 6) {
+                parentNode = this.line6Nodes[x];
+            } else if (y === 7) {
+                parentNode = this.line7Nodes[x];
+            } else if (y === 8) {
+                parentNode = this.line8Nodes[x];
+            }
+            node.parent = parentNode;
+            // node.setPosition(v3((2 * x - 1) / 2 * this._cellWidth - this._cellWidth * 4.5,
+            //     (2 * y - 1) / 2 * this._cellHeight - this._cellHeight * 4.5));
 
             let component = node.getComponent(GameWord);
             component.setBtnClickCallback(this.selectGameWord.bind(this));
