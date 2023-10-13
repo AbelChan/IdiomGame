@@ -1,0 +1,13 @@
+{
+  "name": "IdiomGame",
+  "uuid": "372fde2a-4bdb-4f4d-b52c-1908b1260709",
+  "creator": {
+    "version": "3.8.0",
+    "registry": {
+      "remote": {}
+    },
+    "dependencies": {
+      "plugin-import-2x": "1.1.10"
+    }
+  }
+}
