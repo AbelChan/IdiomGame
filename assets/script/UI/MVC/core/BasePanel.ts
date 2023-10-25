@@ -8,7 +8,7 @@
  */
 
 import { _decorator, Component } from 'cc';
-const {ccclass, property} = _decorator;
+const { ccclass, property } = _decorator;
 
 import BaseMediator from "./BaseMediator";
 import { EventManager } from "../../../Infrastructure/EventDispater/EventSystem";
@@ -16,16 +16,21 @@ import { EventName } from "../../../Infrastructure/EventDispater/EventName";
 
 @ccclass('BasePanel')
 export default class BasePanel extends Component {
-   // onLoad () {}
-    start () {
+    // onLoad () {}
+    start() {
 
     }
-   // update (dt) {}
+    // update (dt) {}
     protected _mediator: BaseMediator = null;
-    set mediator(val: BaseMediator){
+    set mediator(val: BaseMediator) {
         this._mediator = val;
     }
-    private onClose(){
+
+    get mediator() {
+        return this._mediator;
+    }
+
+    private onClose() {
         EventManager.getMainEventSystem().dispatchEvent(EventName.HIDE_PANEL, this._mediator);
     }
 }

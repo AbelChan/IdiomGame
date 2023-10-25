@@ -13,25 +13,48 @@ import { ViewType } from "../MVC/ViewType";
 import { PlayGameController } from "../controller/playGame/PlayGameController";
 import PlayGamePanel from "../panel/PlayGamePanel";
 import UIManager from "../../Infrastructure/UIManager";
+import { WordData } from '../controller/playGame/WordData';
 
-export default class PlayGameMediator extends BaseMediator implements IMediator{
-    onLoad () {
+export default class PlayGameMediator extends BaseMediator implements IMediator {
+    private _playGameController: PlayGameController;
+    onLoad() {
         super.onLoad();
         this.viewType = ViewType.Panel;
-        this.prefabsRes = "prefabes/battleScene";
+        this.prefabsRes = "prefabes/PlayGamePanel";
     }
-    start () {
+
+    start() {
         super.start();
 
     }
-    refreshView(data: any){
+
+    get controller(): PlayGameController {
+        if (!this._playGameController) {
+            this._playGameController = UIManager.inst.getComponent(PlayGameController);
+        }
+        return this._playGameController;
+    }
+
+    refreshView(data: any) {
         super.refreshView(data);
-        let playGameControler: PlayGameController = UIManager.inst.getComponent(PlayGameController);
-        let battleWords = playGameControler.battleWords;
-        let freeWords = playGameControler.freeWords;
+        let battleWords = this.controller.battleWords;
+        let freeWords = this.controller.freeWords;
 
 
         let panel: PlayGamePanel = this.panel as PlayGamePanel;
         panel.setWords(battleWords, freeWords);
     }
+
+
+    selectFillWord(data: WordData) {
+        let playGameControler: PlayGameController = UIManager.inst.getComponent(PlayGameController);
+                
+    }
+
+    selectIdiomWord(data: WordData) {
+        let playGameControler: PlayGameController = UIManager.inst.getComponent(PlayGameController);
+
+    }
+
+
 }

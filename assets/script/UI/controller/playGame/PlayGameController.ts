@@ -38,6 +38,7 @@ export class PlayGameController extends BaseController {
         this._profile = profile.stage;
         this.setStage(this._profile.stageId ? this._profile.stageId : 1);
     }
+
     public setStage(stageId: number) {
         this._stageId = stageId;
         if (this._profile.stageId === stageId) {
@@ -47,9 +48,11 @@ export class PlayGameController extends BaseController {
             this.setupWordDataByStageTable(stageTable);
         }
     }
+
     get battleWords(): WordData[] {
         return this._battleWords;
     }
+
     get freeWords(): WordData[] {
         return this._freeWords;
     }
@@ -71,6 +74,7 @@ export class PlayGameController extends BaseController {
             this._freeWords.push(wordData);
         }
     }
+
     private setupWordDataByStageTable(table: StageTable) {
         let words = table.word;
         let answer = table.answer;
@@ -94,6 +98,7 @@ export class PlayGameController extends BaseController {
             this._battleWords.push(wordData);
         }
     }
+
     private writeProfile() {
         this._profile.stageId = this._stageId;
         this._profile.battleWords = this._battleWords;

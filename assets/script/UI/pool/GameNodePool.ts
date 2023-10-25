@@ -10,8 +10,8 @@
 import { _decorator, NodePool, Node, Prefab, instantiate } from 'cc';
 const { ccclass, property } = _decorator;
 
-import { GameWord } from "../panel/GameWord";
-import { FillWord } from "../panel/FillWord";
+import { GameWordItem } from "../panel/GameWordItem";
+import { FillWordItem } from "../panel/FillWordItem";
 import GameFacade from "../../Application/GameFacade";
 import { WordData } from "../controller/playGame/WordData";
 
@@ -24,7 +24,7 @@ export default class GameNodePool {
         if (!node) {
             let res: Prefab = GameFacade.inst.resManager.getRes('prefabes/word', Prefab) as Prefab;
             node = instantiate(res);
-            let gameWord: GameWord = node.getComponent(GameWord);
+            let gameWord: GameWordItem = node.getComponent(GameWordItem);
             gameWord.reuse(word);
         }
         return node;
@@ -34,18 +34,18 @@ export default class GameNodePool {
         if (!node) {
             let res: Prefab = GameFacade.inst.resManager.getRes('prefabes/word1', Prefab) as Prefab;
             node = instantiate(res);
-            let fillWord: FillWord = node.getComponent(FillWord);
+            let fillWord: FillWordItem = node.getComponent(FillWordItem);
             fillWord.reuse(data);
         }
         return node;
     }
 
-    public static putBattleWordNode(gameWord: GameWord): void {
+    public static putBattleWordNode(gameWord: GameWordItem): void {
         gameWord.unuse();
         this.battleNodePool.put(gameWord.node);
     }
 
-    public static putFreeWordNode(fillWord: FillWord): void {
+    public static putFreeWordNode(fillWord: FillWordItem): void {
         fillWord.unuse();
         this.freeNodePool.put(fillWord.node);
     }

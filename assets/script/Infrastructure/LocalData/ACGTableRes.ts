@@ -20,8 +20,18 @@ import { IACGTableRes } from "./interface/IACGTableRes";
 export default class ACGTableRes extends Component implements IACGTableRes {
     private bundle: AssetManager.Bundle = null;
     private tables: Map<string, Map<string, BaseTable>> = new Map();
+    private tables2: Map<string, Array<BaseTable>> = new Map();
     private _loadedTable: string[] = [];
     private _loadedCallback: () => void = null;
+
+    public getTableAllRes(tableType: TableEnum): Array<BaseTable> {
+        let tables: Array<BaseTable> = this.tables2.get(tableType);
+        if (!tables) {
+            return new Array();
+        }
+
+        return tables;
+    }
 
     public getTableRes(tableType: TableEnum, id: number): BaseTable | null {
         let tables: Map<string, BaseTable> = this.tables.get(tableType);
@@ -31,6 +41,7 @@ export default class ACGTableRes extends Component implements IACGTableRes {
         let table: BaseTable = tables.get(id + "");
         return table;
     }
+
     public loadData(cb: () => void) {
         this._loadedCallback = cb;
         assetManager.loadBundle('data', (err, bundle) => {
@@ -41,16 +52,20 @@ export default class ACGTableRes extends Component implements IACGTableRes {
             }
         });
     }
+
     private loadFirstData() {
         this.bundle.load('first', JsonAsset, (err: Error, asset: JsonAsset) => {
             if (!err) {
                 let jsonData = asset.json;
                 let map = new Map();
                 this.tables.set(TableEnum.Stage, map);
+                let array = new Array();
+                this.tables2.set(TableEnum.Stage, array);
                 for (let key in jsonData) {
                     let data = jsonData[key];
                     let stageTable = new StageTable(data);
                     map.set(stageTable.id + "", stageTable);
+                    array.push(stageTable);
                 }
                 this.setTableLoadState(TableEnum.Stage);
             } else {
@@ -58,16 +73,20 @@ export default class ACGTableRes extends Component implements IACGTableRes {
             }
         });
     }
+
     private loadWordInfoData() {
         this.bundle.load('wordInfo', JsonAsset, (err: Error, asset: JsonAsset) => {
             if (!err) {
                 let jsonData = asset.json;
                 let map = new Map();
                 this.tables.set(TableEnum.Idiom, map);
+                let array = new Array();
+                this.tables2.set(TableEnum.Idiom, array);
                 for (let key in jsonData) {
                     let data = jsonData[key];
                     let stageTable = new IdiomTablel(data);
                     map.set(stageTable.id + "", stageTable);
+                    array.push(stageTable);
                 }
                 this.setTableLoadState(TableEnum.Idiom);
             } else {
@@ -75,6 +94,7 @@ export default class ACGTableRes extends Component implements IACGTableRes {
             }
         });
     }
+
     private setTableLoadState(table: string) {
         this._loadedTable.push(table);
 

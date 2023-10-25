@@ -37,7 +37,6 @@ export default class GameController extends Component {
 
     loadData() {
         // ACGTableRes.loadData(() => {
-
         // });
     }
 

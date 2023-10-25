@@ -13,7 +13,7 @@ const { ccclass, property } = _decorator;
 import { WordData } from "../controller/playGame/WordData";
 import GameNodePool from "../pool/GameNodePool";
 import { ACGLog } from "../../acgframework/log/ACGLog";
-import { FillWord } from "./FillWord";
+import { FillWordItem } from "./FillWordItem";
 
 @ccclass('WordPanel')
 export default class WordPanel extends Component {
@@ -21,13 +21,9 @@ export default class WordPanel extends Component {
     wordParentNodes: Node[] = [];
     private TAG = "WordPanel";
     private readonly _cellNum: number = 6;
-    private _cellWidth: number = 0;
-    private _cellHeight: number = 0;
     private _onWordClickCallback: (data: WordData) => void = null;
     onLoad() {
-        let size = this.node.getComponent(UITransform);
-        this._cellWidth = size.width / this._cellNum;
-        this._cellHeight = size.height / 4;
+
     }
     start() {
 
@@ -35,23 +31,20 @@ export default class WordPanel extends Component {
     // update (dt) {}
 
     setWords(words: WordData[]) {
-        this.node.destroyAllChildren();
         for (let i = 0, len = words.length; i < len; i++) {
             let word = words[i];
-            let node = GameNodePool.getFreeWordNode(word);
-            node.parent = this.node;
-            let index = word.index;
-            let y = Math.floor(index / this._cellNum);
-            let x = index % this._cellNum;
-            node.setPosition(v3((2 * x + 1) / 2 * this._cellWidth - this._cellNum / 2 * this._cellWidth,
-                -(2 * y + 1) / 2 * this._cellHeight))
-
-
-            let component = node.getComponent(FillWord);
+            let parentNode = this.wordParentNodes[word.index];
+            let node = parentNode.children[0]
+            if (!node || !node.getComponent(FillWordItem)) {
+                node = GameNodePool.getFreeWordNode(word);
+                node.parent = this.wordParentNodes[word.index];
+            }
+            node.active = true;
+            let component = node.getComponent(FillWordItem);
             component.setBtnClickCallback(this.selectGameWord.bind(this));
         }
     }
-    private setClickWordCallback(cb: (data: WordData) => void) {
+    public setClickWordCallback(cb: (data: WordData) => void) {
         this._onWordClickCallback = cb;
     }
 

@@ -8,7 +8,7 @@
  */
 
 import { _decorator, Component, Prefab, Node, Button, find, resources, instantiate } from 'cc';
-const {ccclass, property} = _decorator;
+const { ccclass, property } = _decorator;
 
 import { ViewType } from "../ViewType";
 import BasePanel from "./BasePanel";
@@ -17,43 +17,43 @@ import { EventManager } from "../../../Infrastructure/EventDispater/EventSystem"
 
 @ccclass('BaseMediator')
 export default class BaseMediator extends Component {
-    
+
     public viewType: ViewType = ViewType.Panel;
     public prefabsRes: string = "";
     public viewPrefabs: Prefab | null = null;
-    public panel: BasePanel = null;  
-    
-    
-    onLoad () {
+    public panel: BasePanel = null;
+
+
+    onLoad() {
 
     }
-    start () {
+    start() {
 
     }
-   // update (dt) {}
-    refreshView(data: any){
+    // update (dt) {}
+    refreshView(data: any) {
 
     }
-    getPanel(cb: (panel: BasePanel) => void){
-        if(this.panel){
-        cb(this.panel);
-        }else{
-        resources.load(this.prefabsRes, Prefab, (err: Error, assets: Prefab) => {
-        if(!err){
-        let node: Node = instantiate(assets);
-        this.setCloseBtnCallBack(node);
-        let panel = node.getComponent(BasePanel);
-        panel.mediator = this;
-        this.panel = panel;
-        cb(panel);
+    getPanel(cb: (panel: BasePanel) => void) {
+        if (this.panel) {
+            cb(this.panel);
+        } else {
+            resources.load(this.prefabsRes, Prefab, (err: Error, assets: Prefab) => {
+                if (!err) {
+                    let node: Node = instantiate(assets);
+                    this.setCloseBtnCallBack(node);
+                    let panel = node.getComponent(BasePanel);
+                    panel.mediator = this;
+                    this.panel = panel;
+                    cb(panel);
+                }
+            });
         }
-        });
-        }
     }
-    private setCloseBtnCallBack(node: Node){
+    private setCloseBtnCallBack(node: Node) {
         let closeNode = find("closeBtn", node);
-        if(!closeNode){
-        return;
+        if (!closeNode) {
+            return;
         }
         let btn = closeNode.getComponent(Button);
         let eventHandler = new Component.EventHandler()
@@ -62,15 +62,15 @@ export default class BaseMediator extends Component {
         eventHandler.handler = "onClose";
         btn.clickEvents.push(eventHandler);
     }
-    dispatchEvent(eventName: EventName, data: any){
+    dispatchEvent(eventName: EventName, data: any) {
         EventManager.getMainEventSystem().dispatchEvent(eventName, data);
     }
-    dispatchEventWithEventSystem(){
-       //TODO
+    dispatchEventWithEventSystem() {
+        //TODO
     }
-   // protected getController <T extends BaseController> (type: {prototype: T}): T {
-   //     return UIManager.inst.getComponent(type);
-   // }
+    // protected getController <T extends BaseController> (type: {prototype: T}): T {
+    //     return UIManager.inst.getComponent(type);
+    // }
 }
 
 

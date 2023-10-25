@@ -11,11 +11,11 @@ import { _decorator } from 'cc';
 import BaseMediator from "../MVC/core/BaseMediator";
 import { ViewType } from "../MVC/ViewType";
 
-export default class StartGameMediator extends BaseMediator implements IMediator {
+export default class CreateStageMediator extends BaseMediator implements IMediator {
     onLoad() {
         super.onLoad();
         this.viewType = ViewType.Panel;
-        this.prefabsRes = "prefabes/StartGamePanel";
+        this.prefabsRes = "prefabes/CreateStatePanel";
     }
     start() {
         super.start();

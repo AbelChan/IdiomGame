@@ -24,12 +24,14 @@ import { PlayGameController } from "../UI/controller/playGame/PlayGameController
 import { BaseController } from "../UI/MVC/core/BaseController";
 import ACGLocalStorage from "./LocalStorage/ACGLocalStorage";
 import { ACGLog } from "../acgframework/log/ACGLog";
+import CreateStageMediator from '../UI/mediator/CreateStageMediator';
+import { CreateStageController } from '../UI/controller/playGame/CreateStageController';
 
 @ccclass('UIManager')
 export default class UIManager extends Component {
     _panelMediator: BaseMediator = null;
     _windowMediator: BaseMediator = null;
-    _panelQueue: ACGStack<PanelData> = new ACGStack(); // 展示UI的队列
+    _panelQueue: ACGStack<PanelData> = new ACGStack(50); // 展示UI的队列
     private static _inst: UIManager = null;
     static get inst(): UIManager {
         return UIManager._inst;
@@ -72,9 +74,11 @@ export default class UIManager extends Component {
     private addMediators() {
         this.addComponent(StartGameMediator);
         this.addComponent(PlayGameMediator);
+        this.addComponent(CreateStageMediator);
     }
     private addViewControllers() {
         this.addComponent(PlayGameController);
+        this.addComponent(CreateStageController);
     }
     private registerEvents() {
         let eventSystem = EventManager.getMainEventSystem();

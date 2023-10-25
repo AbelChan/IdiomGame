@@ -2,12 +2,12 @@
   "ver": "1.1.45",
   "importer": "prefab",
   "imported": true,
-  "uuid": "f781072a-840f-43cb-b1f5-2baa8bb86a68",
+  "uuid": "e4449228-e354-4212-9e19-8251cb8b3660",
   "files": [
     ".json"
   ],
   "subMetas": {},
   "userData": {
-    "syncNodeName": "battleScene"
+    "syncNodeName": "StartGamePanel"
   }
 }

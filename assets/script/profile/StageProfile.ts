@@ -13,8 +13,15 @@ import { WORD_STATE, WordData } from "../UI/controller/playGame/WordData";
 
 export class StageWordItem {
     word: string = "";
+    showWord: string = "";
     index: number = 0;
     wordState: WORD_STATE = 0;
+}
+
+export class StageFillWordItem {
+    word: string = "";
+    index: number = 0;
+    posIndex: number = 0;
 }
 
 export class StageProfile extends BaseProfile {

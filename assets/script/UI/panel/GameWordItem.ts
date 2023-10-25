@@ -3,7 +3,7 @@
  * @Date: 2020-07-29 01:19:50
  * @LastEditors: Abel Chan
  * @LastEditTime: 2020-09-16 00:03:46
- * @FilePath: \assets\script\UI\panel\GameWord.ts
+ * @FilePath: \assets\script\UI\panel\GameWordItem.ts
  * @description: 游戏区的字块
  */
 
@@ -12,8 +12,8 @@ const { ccclass, property } = _decorator;
 
 import { WordData, WORD_STATE } from "../controller/playGame/WordData";
 
-@ccclass('GameWord')
-export class GameWord extends Component {
+@ccclass('GameWordItem')
+export class GameWordItem extends Component {
     @property(Label)
     private label: Label | null = null;
 
@@ -35,20 +35,35 @@ export class GameWord extends Component {
         this.label = labelNode.getComponent(Label);
 
     }
+
     start() {
 
     }
+
     reuse(val: WordData) {
         this._wordData = val;
         this.setLabelStr(val.word);
         this.setWordImg();
     }
+
     unuse() {
         this._wordData = null;
     }
+
+    setSelected(val: WordData) {
+        this.selectImg.active = this._wordData === val;
+        this.setLabelStr(this._wordData.word);
+    }
+
+    refreshWord() {
+        this.setLabelStr(this._wordData.word);
+        this.setWordImg();
+    }
+
     public setBtnClickCallback(cb: Function) {
         this._onBtnCallback = cb;
     }
+
     private setWordImg() {
         this.completeImg.active = this._wordData.wordState === WORD_STATE.COMPLETE;
         this.unCompleteImg.active = this._wordData.wordState === WORD_STATE.NORMAL;
@@ -56,18 +71,23 @@ export class GameWord extends Component {
         this.selectImg.active = false;
         this.fillImg.active = this._wordData.wordState === WORD_STATE.FILL || this._wordData.wordState === WORD_STATE.FILLFAIL;
     }
+
     private setLabelColor() {
         // this.label.node.color
         // color(255, 255, 255);    //完成状态
         // color(87, 70, 62);       //未完成状态和填词状态
         // color(203, 56, 66);      //填完失败
     }
+
     private setLabelStr(str: string) {
         this.label.string = str;
         this.label.node.active = this._wordData.wordState !== WORD_STATE.EMPTY;
     }
+
     private onBtnClick() {
-        if (this._wordData.wordState === WORD_STATE.EMPTY || this._wordData.wordState === WORD_STATE.FILL || this._wordData.wordState === WORD_STATE.FILLFAIL) {
+        if (!this.selectImg.active && (this._wordData.wordState === WORD_STATE.EMPTY ||
+            this._wordData.wordState === WORD_STATE.FILL ||
+            this._wordData.wordState === WORD_STATE.FILLFAIL)) {
             this._onBtnCallback && this._onBtnCallback(this._wordData);
         }
     }

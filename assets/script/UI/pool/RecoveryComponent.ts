@@ -1,7 +1,7 @@
 import { _decorator, Component, Node } from 'cc';
-import { GameWord } from '../panel/GameWord';
+import { GameWordItem } from '../panel/GameWordItem';
 import GameNodePool from './GameNodePool';
-import { FillWord } from '../panel/FillWord';
+import { FillWordItem } from '../panel/FillWordItem';
 const { ccclass, property } = _decorator;
 
 @ccclass('RecoveryComponent')
@@ -15,10 +15,10 @@ export class RecoveryComponent extends Component {
     }
 
     public recycleAllNode() {
-        let uiCommponents: GameWord[] = [];
+        let uiCommponents: GameWordItem[] = [];
         for (let index = 0, len = this.node.children.length; index < len; ++index) {
             let element = this.node.children[index];
-            let components = element.getComponentsInChildren(GameWord);
+            let components = element.getComponentsInChildren(GameWordItem);
             uiCommponents = uiCommponents.concat(components);
         }
         for (let index = 0, len = uiCommponents.length; index < len; ++index) {
@@ -27,10 +27,10 @@ export class RecoveryComponent extends Component {
         }
 
 
-        let fillWordComponents: FillWord[] = [];
+        let fillWordComponents: FillWordItem[] = [];
         for (let index = 0, len = this.node.children.length; index < len; ++index) {
             let element = this.node.children[index];
-            let components = element.getComponentsInChildren(FillWord);
+            let components = element.getComponentsInChildren(FillWordItem);
             fillWordComponents = fillWordComponents.concat(components);
         }
         for (let index = 0, len = fillWordComponents.length; index < len; ++index) {

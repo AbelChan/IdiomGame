@@ -3,7 +3,7 @@
  * @Date: 2020-07-29 01:20:57
  * @LastEditors: Abel Chan
  * @LastEditTime: 2020-10-25 22:34:35
- * @FilePath: \assets\script\UI\panel\FillWord.ts
+ * @FilePath: \assets\script\UI\panel\FillWordItem.ts
  * @description: 
  */
 
@@ -12,8 +12,8 @@ const { ccclass, property } = _decorator;
 
 import { WordData } from "../controller/playGame/WordData";
 
-@ccclass('FillWord')
-export class FillWord extends Component {
+@ccclass('FillWordItem')
+export class FillWordItem extends Component {
     @property(Label)
     private label: Label | null = null;
     private _wordData: WordData = null;
@@ -39,6 +39,7 @@ export class FillWord extends Component {
     }
     private onBtnClick() {
         this._onBtnCallback && this._onBtnCallback(this._wordData);
+        this.node.active = false;
     }
 }
 

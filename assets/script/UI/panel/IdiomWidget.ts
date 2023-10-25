@@ -10,13 +10,13 @@
 import { _decorator, Component, Node, UITransform, v3 } from 'cc';
 const { ccclass, property } = _decorator;
 
-import { WordData } from "../controller/playGame/WordData";
+import { WORD_STATE, WordData } from "../controller/playGame/WordData";
 import GameNodePool from "../pool/GameNodePool";
 import { ACGLog } from "../../acgframework/log/ACGLog";
-import { GameWord } from "./GameWord";
+import { GameWordItem } from "./GameWordItem";
 
-@ccclass('IdiomPanel')
-export default class IdiomPanel extends Component {
+@ccclass('IdiomWidget')
+export default class IdiomWidget extends Component {
     @property([Node])
     line0Nodes: Node[][] = [];
     @property([Node])
@@ -36,29 +36,29 @@ export default class IdiomPanel extends Component {
     @property([Node])
     line8Nodes: Node[] = [];
 
-    private TAG = "IdiomPanel"
-    private static _cellNum: number = 9;
-    private _cellWidth: number = 0;
-    private _cellHeight: number = 0;
+    private TAG = "IdiomWidget"
     private _onWordClickCallback: Function = null;
+    private _words: GameWordItem[] = [];
+    
     onLoad() {
-        let size = this.node.getComponent(UITransform);
-        this._cellWidth = size.width / IdiomPanel._cellNum;
-        this._cellHeight = size.height / IdiomPanel._cellNum;
     }
+
     start() {
 
 
     }
-    // update (dt) {}
-    setWords(words: WordData[]) {
 
+    // update (dt) {}
+
+    setWords(words: WordData[]) {
+        this._words.length = 0;
+
+        let selected: boolean = true;
         for (let i = 0, len = words.length; i < len; i++) {
             let word = words[i];
             let index = word.index;
             let x = Math.ceil(index / 10);
             let y = index % 10;
-            let node = GameNodePool.getBattleWordNode(word);
             let parentNode;
             if (y === 0) {
                 parentNode = this.line0Nodes[x];
@@ -79,20 +79,37 @@ export default class IdiomPanel extends Component {
             } else if (y === 8) {
                 parentNode = this.line8Nodes[x];
             }
-            node.parent = parentNode;
-            // node.setPosition(v3((2 * x - 1) / 2 * this._cellWidth - this._cellWidth * 4.5,
-            //     (2 * y - 1) / 2 * this._cellHeight - this._cellHeight * 4.5));
+            let node = parentNode.children[0]
+            if (!node || !node.getComponent(GameWordItem)) {
+                node = GameNodePool.getBattleWordNode(word);
+                node.parent = parentNode;
+            }
 
-            let component = node.getComponent(GameWord);
+            node.active = true;
+            let component = node.getComponent(GameWordItem);
             component.setBtnClickCallback(this.selectGameWord.bind(this));
+            if (word.wordState === WORD_STATE.EMPTY && selected) {
+                component.selectImg.active = true;
+                selected = false;
+            }
+            this._words[this._words.length] = component;
         }
     }
-    private setClickWordCallback(cb: (data: WordData) => void) {
+
+    public setClickWordCallback(cb: (data: WordData) => void) {
         this._onWordClickCallback = cb;
     }
+
     private selectGameWord(data: WordData) {
         ACGLog.debug(this.TAG, `onBtnClick selectGameWord ${data.word}`);
         this._onWordClickCallback && this._onWordClickCallback(data);
+        if (data.wordState === WORD_STATE.FILL) {
+            data.wordState = WORD_STATE.EMPTY;
+        }
+        for (let index = 0, len = this._words.length; index < len; ++index) {
+            let element = this._words[index];
+            element.setSelected(data);
+        }
     }
 }
 

@@ -8,21 +8,21 @@
 //  */
 
 import { _decorator, Component, Asset, AssetManager } from 'cc';
-const {ccclass, property} = _decorator;
+const { ccclass, property } = _decorator;
 
 import { ACGGraph } from "./acgframework/data_structure/ACGGraph";
 
 @ccclass('TestScene')
-export class TestData{
-    constructor(index){
+export class TestData {
+    constructor(index) {
         // this.index = index;
     }
     private index: number = 0;
 }
 
 export default class TestScene extends Component {
-//    // onLoad () {}
-    start () {
+    //    // onLoad () {}
+    start() {
 
 
         // let graph = new ACGGraph<TestData>();
@@ -30,7 +30,7 @@ export default class TestScene extends Component {
 
         // setTimeout(()=>{
         // let url = ["prefabes/word", "prefabes/word1"];
-//            // let url = "prefabes/word";
+        //            // let url = "prefabes/word";
         // this.loadRes(url, cc.Prefab, ()=>{
 
         // });
@@ -38,16 +38,18 @@ export default class TestScene extends Component {
         // this.bunleTest();
         // }, 1000);
     }
-    
-    loadRes(url: string | string[], type: typeof Asset, callback: (error: Error, resource: any) => void){
+
+    loadRes(url: string | string[], type: typeof Asset, callback: (error: Error, resource: any) => void) {
         // cc.resources.load(url, type, (err: Error, resource: any) => {
         // callback(err, resource);
         // });
     }
-    builtinsTest(){
+
+    builtinsTest() {
 
     }
-    bunleTest(){
+
+    bunleTest() {
         // cc.assetManager.loadBundle("/data/", cc.JsonAsset, (error: Error, bundle: cc.AssetManager.Bundle) => {
         // let info = bundle.getInfoWithPath("/first");
         // let dir = bundle.getDirWithPath("/");
@@ -55,7 +57,8 @@ export default class TestScene extends Component {
         // this.loadAsset(bundle);
         // });
     }
-    private loadAsset(bundle: AssetManager.Bundle){
+
+    private loadAsset(bundle: AssetManager.Bundle) {
         // bundle.load("first", cc.JsonAsset, (err, data) => {
         // console.log("err: " + err);
 
@@ -75,6 +78,7 @@ export default class TestScene extends Component {
         // let data = bundle.get("/first", cc.JsonAsset);
         // console.log("get Data:" + JSON.stringify(data));
     }
+
 }
 
 
@@ -87,56 +91,56 @@ export default class TestScene extends Component {
 //  * @LastEditors: Abel Chan
 //  * @LastEditTime: 2020-10-25 22:25:13
 //  * @FilePath: \assets\script\TestScene.ts
-//  * @description: 
+//  * @description:
 //  */
-// 
+//
 // import { ACGGraph } from "./acgframework/data_structure/ACGGraph";
-// 
-// 
-// 
-// 
+//
+//
+//
+//
 // export class TestData{
 //     constructor(index){
 //         this.index = index;
 //     }
 //     private index: number = 0;
 // }
-// 
-// 
+//
+//
 // const {ccclass, property} = cc._decorator;
-// 
+//
 // @ccclass
 // export default class TestScene extends cc.Component {
-// 
+//
 //     // onLoad () {}
-// 
+//
 //     start () {
-// 
-// 
+//
+//
 //         let graph = new ACGGraph<TestData>();
-// 
-// 
+//
+//
 //         setTimeout(()=>{
 //             let url = ["prefabes/word", "prefabes/word1"];
 //             // let url = "prefabes/word";
 //             this.loadRes(url, cc.Prefab, ()=>{
-//                 
+//
 //             });
-// 
+//
 //             this.bunleTest();
 //         }, 1000);
 //     }
-//     
+//
 //     loadRes(url: string | string[], type: typeof cc.Asset, callback: (error: Error, resource: any) => void){
 //         cc.resources.load(url, type, (err: Error, resource: any) => {
 //             callback(err, resource);
 //         });
 //     }
-// 
+//
 //     builtinsTest(){
-//         
+//
 //     }
-// 
+//
 //     bunleTest(){
 //         cc.assetManager.loadBundle("/data/", cc.JsonAsset, (error: Error, bundle: cc.AssetManager.Bundle) => {
 //             let info = bundle.getInfoWithPath("/first");
@@ -145,15 +149,15 @@ export default class TestScene extends Component {
 //             this.loadAsset(bundle);
 //         });
 //     }
-// 
+//
 //     private loadAsset(bundle: cc.AssetManager.Bundle){
 //         bundle.load("first", cc.JsonAsset, (err, data) => {
 //             console.log("err: " + err);
-//             
+//
 //             let firstData = bundle.get("/first", cc.JsonAsset);
 //             console.log("get Data:" + JSON.stringify(firstData));
 //         });
-// 
+//
 //         bundle.preload("stage", cc.JsonAsset, null, (error: Error, item) => {
 //             console.log(`preload`);
 //         });
