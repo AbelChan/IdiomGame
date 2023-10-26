@@ -10,6 +10,7 @@
 import { _decorator } from 'cc';
 import { BaseProfile } from "./BaseProfile";
 import { WORD_STATE, WordData } from "../UI/controller/playGame/WordData";
+import { FillWordData } from '../UI/controller/playGame/FillWordData';
 
 export class StageWordItem {
     word: string = "";
@@ -27,7 +28,7 @@ export class StageFillWordItem {
 export class StageProfile extends BaseProfile {
     stageId: number = 0;
     battleWords: WordData[] = [];
-    freeWords: WordData[] = [];
+    freeWords: FillWordData[] = [];
 }
 
 

@@ -15,8 +15,8 @@ import GameNodePool from "../pool/GameNodePool";
 import { ACGLog } from "../../acgframework/log/ACGLog";
 import { GameWordItem } from "./GameWordItem";
 
-@ccclass('IdiomWidget')
-export default class IdiomWidget extends Component {
+@ccclass('IdiomPanelWidget')
+export default class IdiomPanelWidget extends Component {
     @property([Node])
     line0Nodes: Node[][] = [];
     @property([Node])
@@ -36,10 +36,10 @@ export default class IdiomWidget extends Component {
     @property([Node])
     line8Nodes: Node[] = [];
 
-    private TAG = "IdiomWidget"
+    private TAG = "IdiomPanelWidget"
     private _onWordClickCallback: Function = null;
     private _words: GameWordItem[] = [];
-    
+
     onLoad() {
     }
 
@@ -103,13 +103,13 @@ export default class IdiomWidget extends Component {
     private selectGameWord(data: WordData) {
         ACGLog.debug(this.TAG, `onBtnClick selectGameWord ${data.word}`);
         this._onWordClickCallback && this._onWordClickCallback(data);
-        if (data.wordState === WORD_STATE.FILL) {
-            data.wordState = WORD_STATE.EMPTY;
-        }
-        for (let index = 0, len = this._words.length; index < len; ++index) {
-            let element = this._words[index];
-            element.setSelected(data);
-        }
+        // if (data.wordState === WORD_STATE.FILL) {
+        //     data.wordState = WORD_STATE.EMPTY;
+        // }
+        // for (let index = 0, len = this._words.length; index < len; ++index) {
+        //     let element = this._words[index];
+        //     element.setSelected(data);
+        // }
     }
 }
 

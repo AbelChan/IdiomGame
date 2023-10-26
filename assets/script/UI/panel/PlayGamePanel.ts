@@ -12,16 +12,17 @@ const { ccclass, property } = _decorator;
 
 import BasePanel from "../MVC/core/BasePanel";
 import { WordData } from "../controller/playGame/WordData";
-import IdiomWidget from "./IdiomWidget";
-import WordPanel from "./WordPanel";
+import IdiomPanelWidget from "./IdiomPanelWidget";
+import WordPanelWidget from "./WordPanelWidget";
 import PlayGameMediator from "../mediator/PlayGameMediator";
+import { FillWordData } from '../controller/playGame/FillWordData';
 
 @ccclass('PlayGamePanel')
 export default class PlayGamePanel extends BasePanel {
-    @property(IdiomWidget)
-    private idiomPanel: IdiomWidget = null;
-    @property(WordPanel)
-    private wordPanel: WordPanel = null;
+    @property(IdiomPanelWidget)
+    private idiomPanel: IdiomPanelWidget = null;
+    @property(WordPanelWidget)
+    private wordPanel: WordPanelWidget = null;
     @property(Label)
     numStageLabel: Label | null = null;
 
@@ -35,7 +36,7 @@ export default class PlayGamePanel extends BasePanel {
 
     // update (dt) {}
 
-    public setWords(battleWords: WordData[], fillWords: WordData[]) {
+    public setWords(battleWords: WordData[], fillWords: FillWordData[]) {
         this.idiomPanel.setWords(battleWords);
         this.idiomPanel.setClickWordCallback(this.onSelectIdiomWord.bind(this));
         this.wordPanel.setWords(fillWords);
@@ -58,7 +59,7 @@ export default class PlayGamePanel extends BasePanel {
 
     }
 
-    private onSelectFillWord(data: WordData) {
+    private onSelectFillWord(data: FillWordData) {
         (this.mediator as PlayGameMediator).selectFillWord(data);
     }
 

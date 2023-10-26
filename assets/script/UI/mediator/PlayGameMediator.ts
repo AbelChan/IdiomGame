@@ -14,9 +14,11 @@ import { PlayGameController } from "../controller/playGame/PlayGameController";
 import PlayGamePanel from "../panel/PlayGamePanel";
 import UIManager from "../../Infrastructure/UIManager";
 import { WordData } from '../controller/playGame/WordData';
+import { FillWordData } from '../controller/playGame/FillWordData';
 
 export default class PlayGameMediator extends BaseMediator implements IMediator {
     private _playGameController: PlayGameController;
+    private _selectIndex: number = 0;
     onLoad() {
         super.onLoad();
         this.viewType = ViewType.Panel;
@@ -46,9 +48,9 @@ export default class PlayGameMediator extends BaseMediator implements IMediator 
     }
 
 
-    selectFillWord(data: WordData) {
+    selectFillWord(data: FillWordData) {
         let playGameControler: PlayGameController = UIManager.inst.getComponent(PlayGameController);
-                
+
     }
 
     selectIdiomWord(data: WordData) {

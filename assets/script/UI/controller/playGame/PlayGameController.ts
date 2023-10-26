@@ -12,18 +12,19 @@ const { ccclass, property } = _decorator;
 
 import { BaseController } from "../../MVC/core/BaseController";
 import { GameProfile } from "../../../profile/GameProfile";
-import { StageProfile, StageWordItem } from "../../../profile/StageProfile";
+import { StageFillWordItem, StageProfile, StageWordItem } from "../../../profile/StageProfile";
 import { TableEnum } from "../../../Infrastructure/LocalData/TableEnum";
 import StageTable from "../../../Infrastructure/LocalData/StageTable";
 import { WordData, WORD_STATE, WORD_TYPE } from "./WordData";
 import GameFacade from "../../../Application/GameFacade";
+import { FillWordData } from './FillWordData';
 
 @ccclass('PlayGameController')
 export class PlayGameController extends BaseController {
     private _profile: StageProfile = null;
     private _stageId: number = 1;
     private _battleWords: WordData[] = [];
-    private _freeWords: WordData[] = [];
+    private _freeWords: FillWordData[] = [];
 
     onLoad() {
 
@@ -53,7 +54,7 @@ export class PlayGameController extends BaseController {
         return this._battleWords;
     }
 
-    get freeWords(): WordData[] {
+    get freeWords(): FillWordData[] {
         return this._freeWords;
     }
 
@@ -68,8 +69,8 @@ export class PlayGameController extends BaseController {
 
         this._freeWords = [];
         for (let i = 0, len = profile.freeWords.length - 1; i <= len; i++) {
-            let item: StageWordItem = profile.freeWords[i] as StageWordItem;
-            let wordData = new WordData();
+            let item: StageFillWordItem = profile.freeWords[i] as StageFillWordItem;
+            let wordData = new FillWordData();
             wordData.initWithProfile(item);
             this._freeWords.push(wordData);
         }
@@ -90,9 +91,9 @@ export class PlayGameController extends BaseController {
             wordData.wordState = WORD_STATE.NORMAL;
             if (answer.indexOf(i) !== -1) {
                 wordData.wordState = WORD_STATE.EMPTY;
-                let freeWordData = new WordData();
-                freeWordData.initWithStageTable(word, freeIndex++, pos);
-                freeWordData.wordState = WORD_STATE.NORMAL;
+                let freeWordData = new FillWordData();
+                freeWordData.initWithStageTable(word, freeIndex++);
+                // freeWordData.wordState = WORD_STATE.NORMAL;
                 this._freeWords.push(freeWordData);
             }
             this._battleWords.push(wordData);

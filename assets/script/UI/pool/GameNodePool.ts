@@ -14,6 +14,7 @@ import { GameWordItem } from "../panel/GameWordItem";
 import { FillWordItem } from "../panel/FillWordItem";
 import GameFacade from "../../Application/GameFacade";
 import { WordData } from "../controller/playGame/WordData";
+import { FillWordData } from '../controller/playGame/FillWordData';
 
 @ccclass('GameNodePool')
 export default class GameNodePool {
@@ -29,7 +30,7 @@ export default class GameNodePool {
         }
         return node;
     }
-    public static getFreeWordNode(data: WordData): Node {
+    public static getFreeWordNode(data: FillWordData): Node {
         let node = this.freeNodePool.get(data);
         if (!node) {
             let res: Prefab = GameFacade.inst.resManager.getRes('prefabes/word1', Prefab) as Prefab;

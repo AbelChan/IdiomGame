@@ -3,7 +3,7 @@
  * @Date: 2020-08-24 23:40:39
  * @LastEditors: Abel Chan
  * @LastEditTime: 2020-10-25 22:35:51
- * @FilePath: \assets\script\UI\panel\WordPanel.ts
+ * @FilePath: \assets\script\UI\panel\WordPanelWidget.ts
  * @description: 
  */
 
@@ -14,12 +14,13 @@ import { WordData } from "../controller/playGame/WordData";
 import GameNodePool from "../pool/GameNodePool";
 import { ACGLog } from "../../acgframework/log/ACGLog";
 import { FillWordItem } from "./FillWordItem";
+import { FillWordData } from '../controller/playGame/FillWordData';
 
-@ccclass('WordPanel')
-export default class WordPanel extends Component {
+@ccclass('WordPanelWidget')
+export default class WordPanelWidget extends Component {
     @property([Node])
     wordParentNodes: Node[] = [];
-    private TAG = "WordPanel";
+    private TAG = "WordPanelWidget";
     private readonly _cellNum: number = 6;
     private _onWordClickCallback: (data: WordData) => void = null;
     onLoad() {
@@ -30,7 +31,7 @@ export default class WordPanel extends Component {
     }
     // update (dt) {}
 
-    setWords(words: WordData[]) {
+    setWords(words: FillWordData[]) {
         for (let i = 0, len = words.length; i < len; i++) {
             let word = words[i];
             let parentNode = this.wordParentNodes[word.index];

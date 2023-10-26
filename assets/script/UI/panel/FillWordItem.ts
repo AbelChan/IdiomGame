@@ -1,22 +1,16 @@
-/*
- * @Author: Abel Chan
- * @Date: 2020-07-29 01:20:57
- * @LastEditors: Abel Chan
- * @LastEditTime: 2020-10-25 22:34:35
- * @FilePath: \assets\script\UI\panel\FillWordItem.ts
- * @description: 
- */
+
 
 import { _decorator, Component, Label } from 'cc';
 const { ccclass, property } = _decorator;
 
 import { WordData } from "../controller/playGame/WordData";
+import { FillWordData } from '../controller/playGame/FillWordData';
 
 @ccclass('FillWordItem')
 export class FillWordItem extends Component {
     @property(Label)
     private label: Label | null = null;
-    private _wordData: WordData = null;
+    private _wordData: FillWordData = null;
     private _onBtnCallback: Function = null;
     onLoad() {
 
@@ -24,7 +18,7 @@ export class FillWordItem extends Component {
     start() {
 
     }
-    reuse(word: WordData) {
+    reuse(word: FillWordData) {
         this._wordData = word;
         this.string = word.word;
     }

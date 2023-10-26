@@ -1,8 +1,8 @@
 import { _decorator, CCInteger, Component, Label, Node } from 'cc';
 const { ccclass, property } = _decorator;
 
-@ccclass('IdiomWordWidget')
-export class IdiomWordWidget extends Component {
+@ccclass('IdiomWordItem')
+export class IdiomWordItem extends Component {
     @property({ type: CCInteger, group: "pos" })
     posx: number = 0
     @property({ type: CCInteger, group: "pos" })
