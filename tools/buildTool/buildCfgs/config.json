@@ -1,5 +1,5 @@
 {
-    "CocosDashboardPath": "D:/CocosDashboard/resources/.editors/",
+    "CocosDashboardPath": "D:/cocos-dashboard-editors/",
     "list": [{
             "projType": "说明:打包渠道类型",
             "buildType": [
