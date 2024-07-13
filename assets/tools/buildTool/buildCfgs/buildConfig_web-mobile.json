@@ -1,0 +1,69 @@
+{
+    "name": "萌萌塔防",
+    "platform": "web-mobile",
+    "buildPath": "project://build",
+    "debug": false,
+    "md5Cache": true,
+    "skipCompressTexture": false,
+    "sourceMaps": true,
+    "replaceSplashScreen": true,
+    "mainBundleCompressionType": "merge_dep",
+    "mainBundleIsRemote": false,
+    "mergeStartScene": false,
+    "experimentalEraseModules": false,
+    "compressTexture": true,
+    "packAutoAtlas": true,
+    "startScene": "dfa8b98a-287b-4ae5-8358-7b5c2f4e44fc",
+    "scenes": [{
+            "url": "db://assets/scenes/Boot.scene",
+            "uuid": "bb5583c0-4905-44bb-83e4-1706557a434a",
+            "inBundle": false
+        },
+        {
+            "url": "db://assets/scenes/Login.scene",
+            "uuid": "33efdf85-8098-4f73-b1d7-fa30b79d8eb1",
+            "inBundle": false
+        },
+        {
+            "url": "db://assets/scenes/Main.scene",
+            "uuid": "615490a3-79b0-4536-ad38-1f5f5f4791a8",
+            "inBundle": false
+        },
+        {
+            "url": "db://assets/scenes/PvpFight.scene",
+            "uuid": "4b108e8a-7bb3-4290-8404-b671fe5e1c86",
+            "inBundle": false
+        },
+        {
+            "url": "db://assets/scenes/tt.scene",
+            "uuid": "dfa8b98a-287b-4ae5-8358-7b5c2f4e44fc",
+            "inBundle": false
+        },
+        {
+            "url": "db://assets/test/resmgr_test/resmgr_test_start.scene",
+            "uuid": "2c2f9593-d733-4c4d-997d-a94c5c7e7e9b",
+            "inBundle": false
+        }
+    ],
+    "outputName": "web-mobile",
+    "packages": {
+        "web-mobile": {
+            "orientation": "auto",
+            "__version__": "1.0.0",
+            "polyfills": {
+                "asyncFunctions": true
+            }
+        },
+        "cocos-service": {
+            "configID": "c85d55",
+            "services": [],
+            "__version__": "3.0.3"
+        }
+    },
+    "polyfills": {
+        "asyncFunctions": true
+    },
+    "useBuiltinServer": false,
+    "web-mobile": [],
+    "__version__": "1.3.2"
+}

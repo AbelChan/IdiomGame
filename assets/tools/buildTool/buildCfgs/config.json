@@ -1,0 +1,21 @@
+{
+    "CocosDashboardPath": "D:/CocosDashboard/resources/.editors/",
+    "list": [{
+            "projType": "说明:打包渠道类型",
+            "buildType": [
+                "wechatgame,web-mobile,android,ios,bytedance, huawei,xiaomi,quickgame,qgame"
+            ],
+            "name": "大象游戏",
+            "serverUrl": "https://p62-test-web.ssl.daxianghuyu.cn"
+        },
+        {
+            "projType": "dx-game",
+            "buildType": [
+                "web-mobile",
+                "wechatgame"
+            ],
+            "name": "大象游戏",
+            "serverUrl": "https://p62-test-web.ssl.daxianghuyu.cn"
+        }
+    ]
+}
