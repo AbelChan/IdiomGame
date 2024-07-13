@@ -377,13 +377,13 @@ def main():
             #     FileOpt.delSuffixFile(
             #         outputDestDir + "datas/{}/".format(envPath), '.meta')
             if BUILD_TYPE == CREATOR_BUILD_TYPE.WEB_MOBILE or BUILD_TYPE == CREATOR_BUILD_TYPE.HUA_WEI:
-                buildH5.minTable()
+                # buildH5.minTable()
                 zipDir = outputDestDir+"../"
             elif BUILD_TYPE == CREATOR_BUILD_TYPE.WECHAT_GAME:
-                buildWx.minTable()
+                # buildWx.minTable()
                 zipDir = outputDestDir+"../"
             elif BUILD_TYPE == CREATOR_BUILD_TYPE.BYTE_DANCE:
-                buildByteDance.minTable()
+                # buildByteDance.minTable()
                 zipDir = outputDestDir+"../"
             elif BUILD_TYPE == CREATOR_BUILD_TYPE.IOS:
                 zipDir = outputDestDir+"../../"
