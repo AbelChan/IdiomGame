@@ -50,7 +50,8 @@ export default class PlayGameMediator extends BaseMediator implements IMediator 
 
     selectFillWord(data: FillWordData) {
         let playGameControler: PlayGameController = UIManager.inst.getComponent(PlayGameController);
-
+        let word = data.word;
+        this.controller.getWordData(this._selectIndex);
     }
 
     selectIdiomWord(data: WordData) {

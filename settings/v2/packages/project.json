@@ -1,5 +1,5 @@
 {
-  "__version__": "1.0.5",
+  "__version__": "1.0.6",
   "layer": [
     {
       "name": "Default",
@@ -11,5 +11,8 @@
       "width": 720,
       "height": 1480
     }
+  },
+  "script": {
+    "preserveSymlinks": true
   }
 }

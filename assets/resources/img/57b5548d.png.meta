@@ -1,5 +1,5 @@
 {
-  "ver": "1.0.26",
+  "ver": "1.0.27",
   "importer": "image",
   "imported": true,
   "uuid": "dc1e5cca-eba7-4aca-b62c-edf6a248c455",
@@ -130,6 +130,6 @@
     "type": "sprite-frame",
     "fixAlphaTransparencyArtifacts": false,
     "hasAlpha": true,
-    "redirect": "dc1e5cca-eba7-4aca-b62c-edf6a248c455@f9941"
+    "redirect": "dc1e5cca-eba7-4aca-b62c-edf6a248c455@6c48a"
   }
 }
